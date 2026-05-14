@@ -470,6 +470,116 @@
       text-transform: uppercase;
     }
 
+    .age-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.76);
+      backdrop-filter: blur(12px);
+    }
+
+    .age-gate.is-open {
+      display: grid;
+    }
+
+    .age-gate__panel {
+      width: min(100%, 390px);
+      padding: 26px;
+      text-align: left;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)),
+        var(--card-strong);
+      border: 1px solid var(--border-strong);
+      border-radius: 26px;
+      box-shadow: var(--shadow), var(--red-glow);
+    }
+
+    .age-gate__title {
+      margin: 0 0 8px;
+      font-size: 1.4rem;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .age-gate__copy {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .age-gate__label {
+      display: grid;
+      gap: 8px;
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .age-gate__input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      color: var(--text);
+      color-scheme: dark;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      font: inherit;
+    }
+
+    .age-gate__input:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .age-gate__error {
+      min-height: 1.25rem;
+      margin: 10px 0 0;
+      color: #ff8b8b;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .age-gate__actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .age-gate__button {
+      min-height: 46px;
+      color: var(--text);
+      font: inherit;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .age-gate__button--primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+      border-color: rgba(241, 50, 50, 0.7);
+    }
+
+    .age-gate__button:hover,
+    .age-gate__button:focus-visible {
+      border-color: rgba(241, 50, 50, 0.44);
+      transform: translateY(-1px);
+    }
+
+    .age-gate__button:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
     @keyframes smokeDrift {
       from {
         transform: translate3d(-2rem, -1rem, 0) scale(1);
@@ -799,16 +909,163 @@
       <p class="bio">Daily content, socials, and updates all in one place.</p>
 
       <nav class="links" aria-label="Kyle social links">
-        <!-- Replace these placeholder links with Kyle’s real URLs. -->
-        <a class="link" href="#snapchat"><span>Add Kyle on Snapchat</span></a>
-        <a class="link" href="#tiktok"><span>Watch Kyle’s TikToks</span></a>
-        <a class="link" href="#facebook"><span>Follow Kyle on Facebook</span></a>
-        <a class="link" href="#x"><span>Follow Kyle on X</span></a>
-        <a class="link" href="#contact"><span>Contact / Collab with Kyle</span></a>
+        <a
+          class="link app-link"
+          href="https://www.snapchat.com/@kyleabate22?share_id=BEt7K1wBTPmRXu02PcP8dw&amp;locale=en_US"
+          data-app-url="snapchat://add/kyleabate22"
+          target="_blank"
+          rel="noopener"
+        ><span>Add Kyle on Snapchat</span></a>
+        <a
+          class="link app-link"
+          href="https://www.tiktok.com/@kyle.abate?_r=1&amp;_t=ZT-96Mh8GP8PzK"
+          data-app-url="snssdk1233://user/profile/kyle.abate"
+          target="_blank"
+          rel="noopener"
+        ><span>Watch Kyle’s TikToks</span></a>
+        <a
+          class="link app-link"
+          href="https://www.facebook.com/kyle.abate.2025/?http_ref=eyJ0cyI6MTc3ODc5NjIwNDAwMCwiciI6IiJ9"
+          data-app-url="fb://facewebmodal/f?href=https%3A%2F%2Fwww.facebook.com%2Fkyle.abate.2025%2F%3Fhttp_ref%3DeyJ0cyI6MTc3ODc5NjIwNDAwMCwiciI6IiJ9"
+          target="_blank"
+          rel="noopener"
+        ><span>Follow Kyle on Facebook</span></a>
+        <a
+          class="link app-link age-restricted-link"
+          href="https://x.com/_kybandz?s=21"
+          data-app-url="twitter://user?screen_name=_kybandz"
+          target="_blank"
+          rel="noopener"
+        ><span>Follow Kyle on X</span></a>
+        <a
+          class="link app-link"
+          href="https://www.instagram.com/kyle.518?igsh=MW51NzJqNzRzcTYwNw=="
+          data-app-url="instagram://user?username=kyle.518"
+          target="_blank"
+          rel="noopener"
+        ><span>Contact / Collab with Kyle</span></a>
       </nav>
 
       <p class="footer">Powered by Dio’s Agency</p>
     </section>
   </main>
+
+  <div class="age-gate" id="ageGate" aria-hidden="true">
+    <form class="age-gate__panel" id="ageGateForm" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle" aria-describedby="ageGateDescription" novalidate>
+      <h2 class="age-gate__title" id="ageGateTitle">Age check for X</h2>
+      <p class="age-gate__copy" id="ageGateDescription">Please enter your birthdate. You must be 18 or older to open Kyle’s X profile.</p>
+      <label class="age-gate__label" for="birthdate">Birthdate
+        <input class="age-gate__input" id="birthdate" name="birthdate" type="date" required />
+      </label>
+      <p class="age-gate__error" id="ageGateError" aria-live="polite"></p>
+      <div class="age-gate__actions">
+        <button class="age-gate__button" type="button" id="ageGateCancel">Cancel</button>
+        <button class="age-gate__button age-gate__button--primary" type="submit">Enter X</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const appLinks = document.querySelectorAll(".app-link");
+    const ageGate = document.querySelector("#ageGate");
+    const ageGateForm = document.querySelector("#ageGateForm");
+    const ageGateCancel = document.querySelector("#ageGateCancel");
+    const birthdateInput = document.querySelector("#birthdate");
+    const ageGateError = document.querySelector("#ageGateError");
+    let pendingLink = null;
+
+    function openAppLink(link) {
+      const appUrl = link.dataset.appUrl;
+      const webUrl = link.href;
+
+      if (!appUrl) {
+        window.open(webUrl, "_blank", "noopener");
+        return;
+      }
+
+      window.location.href = appUrl;
+      window.setTimeout(() => {
+        window.location.href = webUrl;
+      }, 900);
+    }
+
+    function showAgeGate(link) {
+      pendingLink = link;
+      ageGate.classList.add("is-open");
+      ageGate.setAttribute("aria-hidden", "false");
+      ageGateError.textContent = "";
+      birthdateInput.value = "";
+      birthdateInput.focus();
+    }
+
+    function closeAgeGate() {
+      ageGate.classList.remove("is-open");
+      ageGate.setAttribute("aria-hidden", "true");
+      pendingLink = null;
+    }
+
+    function isAtLeast18(value) {
+      const birthdate = new Date(`${value}T00:00:00`);
+
+      if (!value || Number.isNaN(birthdate.getTime())) {
+        return false;
+      }
+
+      const today = new Date();
+      let age = today.getFullYear() - birthdate.getFullYear();
+      const birthdayHasPassed =
+        today.getMonth() > birthdate.getMonth() ||
+        (today.getMonth() === birthdate.getMonth() && today.getDate() >= birthdate.getDate());
+
+      if (!birthdayHasPassed) {
+        age -= 1;
+      }
+
+      return age >= 18;
+    }
+
+    appLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        if (link.classList.contains("age-restricted-link")) {
+          showAgeGate(link);
+          return;
+        }
+
+        openAppLink(link);
+      });
+    });
+
+    ageGateForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!isAtLeast18(birthdateInput.value)) {
+        ageGateError.textContent = "Sorry, you must be 18 or older to open this X link.";
+        return;
+      }
+
+      const link = pendingLink;
+      closeAgeGate();
+
+      if (link) {
+        openAppLink(link);
+      }
+    });
+
+    ageGateCancel.addEventListener("click", closeAgeGate);
+
+    ageGate.addEventListener("click", (event) => {
+      if (event.target === ageGate) {
+        closeAgeGate();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && ageGate.classList.contains("is-open")) {
+        closeAgeGate();
+      }
+    });
+  </script>
 </body>
 </html>
