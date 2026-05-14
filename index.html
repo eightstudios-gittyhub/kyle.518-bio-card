@@ -584,10 +584,20 @@
           linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
           url("images/IMG_3162.jpeg"),
           var(--card);
-        background-position: center, center, center;
+        background-clip: padding-box, padding-box, padding-box, border-box;
+        background-position: center, center, center, center;
         background-repeat: no-repeat;
-        background-size: auto, auto, cover;
+        background-size: auto, auto, cover, auto;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 28px;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .card:focus,
+      .card:focus-visible,
+      .card:active {
+        outline: none;
       }
 
       .card > * {
