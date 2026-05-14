@@ -80,153 +80,149 @@
     }
 
     .animated-background::before {
-      inset: -18% -12%;
+      inset: -22% -16%;
       background:
-        radial-gradient(circle at 18% 20%, rgba(183, 230, 255, 0.08), transparent 22rem),
-        radial-gradient(circle at 78% 76%, rgba(241, 50, 50, 0.08), transparent 24rem),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035), transparent 32rem);
-      filter: blur(28px);
-      opacity: 0.78;
-      animation: smokeDrift 28s ease-in-out infinite alternate;
+        radial-gradient(circle at 16% 20%, rgba(184, 231, 255, 0.11), transparent 22rem),
+        radial-gradient(circle at 78% 72%, rgba(241, 50, 50, 0.085), transparent 25rem),
+        radial-gradient(circle at 48% 48%, rgba(255, 255, 255, 0.045), transparent 34rem);
+      filter: blur(34px);
+      opacity: 0.76;
+      transform: translate3d(0, 0, 0);
+      animation: smokeDrift 34s ease-in-out infinite alternate;
     }
 
     .animated-background::after {
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
-      background-size: 34px 34px;
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.62), transparent 82%);
-      opacity: 0.72;
+      background:
+        radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.18) 52%, rgba(0, 0, 0, 0.72) 100%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+      background-size: auto, 38px 38px, 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent 88%);
+      opacity: 0.82;
     }
 
     .smoke-layer {
-      inset: -10rem;
+      inset: -14rem;
       z-index: -1;
       background:
         radial-gradient(ellipse at 12% 72%, rgba(255, 255, 255, 0.075), transparent 24rem),
-        radial-gradient(ellipse at 84% 26%, rgba(132, 170, 190, 0.075), transparent 26rem),
-        radial-gradient(ellipse at 52% 88%, rgba(255, 255, 255, 0.04), transparent 30rem);
-      filter: blur(34px);
-      opacity: 0.6;
+        radial-gradient(ellipse at 84% 26%, rgba(145, 184, 205, 0.085), transparent 27rem),
+        radial-gradient(ellipse at 52% 88%, rgba(255, 255, 255, 0.045), transparent 31rem),
+        linear-gradient(115deg, transparent 12%, rgba(230, 249, 255, 0.035) 32%, transparent 54%, rgba(241, 50, 50, 0.035) 72%, transparent 90%);
+      filter: blur(38px);
+      opacity: 0.62;
       transform: translate3d(0, 0, 0);
-      animation: smokeDrift 34s linear infinite alternate-reverse;
+      animation: smokeDrift 42s linear infinite alternate-reverse;
     }
 
-    .ghost-flyer,
-    .pixel-gun,
-    .bullet-streak,
-    .tag-518,
+    .smoke-layer::before,
+    .smoke-layer::after {
+      position: absolute;
+      content: "";
+      pointer-events: none;
+      border-radius: 999px;
+      filter: blur(30px);
+    }
+
+    .smoke-layer::before {
+      inset: 18% 8% 34% 2%;
+      background: radial-gradient(ellipse at center, rgba(207, 239, 255, 0.07), transparent 68%);
+      animation: smokeDrift 31s ease-in-out infinite alternate;
+    }
+
+    .smoke-layer::after {
+      inset: 44% 0 10% 22%;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.052), transparent 66%);
+      animation: smokeDrift 37s ease-in-out infinite alternate-reverse;
+    }
+
+    .ghost,
+    .floating-518,
     .particle {
       position: absolute;
+      pointer-events: none;
       user-select: none;
       will-change: transform, opacity;
     }
 
-    .ghost-flyer {
-      --ghost-size: 118px;
+    .ghost {
+      --ghost-size: 128px;
       width: var(--ghost-size);
-      height: calc(var(--ghost-size) * 1.28);
-      opacity: 0.62;
+      height: calc(var(--ghost-size) * 1.33);
+      opacity: var(--ghost-opacity, 0.54);
       filter:
-        drop-shadow(0 0 12px rgba(215, 246, 255, 0.36))
-        drop-shadow(0 0 34px rgba(171, 226, 255, 0.22))
-        blur(0.15px);
-      transform: translate3d(-18vw, 0, 0);
-      animation: ghostFlyLeftToRight 31s linear infinite;
+        drop-shadow(0 0 10px rgba(224, 248, 255, 0.36))
+        drop-shadow(0 0 34px rgba(142, 219, 255, 0.2));
+      transform: translate3d(-24vw, 0, 0);
+      animation: ghostFlyRight var(--ghost-speed, 36s) linear infinite, fadeGhost var(--ghost-speed, 36s) ease-in-out infinite;
     }
 
-    .ghost-flyer::before {
-      position: absolute;
-      inset: 0 4% 3%;
-      content: "";
-      background:
-        radial-gradient(ellipse at 37% 34%, rgba(221, 250, 255, 0.5) 0 8%, rgba(21, 31, 36, 0.76) 8.8% 14%, transparent 15%),
-        radial-gradient(ellipse at 62% 34%, rgba(221, 250, 255, 0.46) 0 8%, rgba(19, 29, 34, 0.78) 8.8% 14%, transparent 15%),
-        radial-gradient(ellipse at 51% 53%, rgba(232, 252, 255, 0.46) 0 10%, rgba(22, 32, 36, 0.82) 11% 20%, transparent 21%),
-        radial-gradient(ellipse at 50% 42%, rgba(0, 0, 0, 0.68) 0 33%, transparent 44%),
-        radial-gradient(ellipse at 42% 23%, rgba(255, 255, 255, 0.92), rgba(213, 247, 255, 0.5) 18%, transparent 30%),
-        radial-gradient(ellipse at 18% 57%, rgba(235, 253, 255, 0.62), rgba(166, 224, 238, 0.24) 22%, transparent 42%),
-        radial-gradient(ellipse at 84% 59%, rgba(235, 253, 255, 0.54), rgba(166, 224, 238, 0.2) 22%, transparent 43%),
-        linear-gradient(100deg, transparent 17%, rgba(255, 255, 255, 0.28) 26%, transparent 34%),
-        linear-gradient(78deg, transparent 51%, rgba(255, 255, 255, 0.24) 59%, transparent 68%),
-        linear-gradient(164deg, rgba(248, 254, 255, 0.74), rgba(188, 238, 248, 0.4) 42%, rgba(240, 254, 255, 0.18) 72%, rgba(255, 255, 255, 0.05));
-      border: 1px solid rgba(229, 251, 255, 0.32);
-      border-radius: 48% 48% 31% 30% / 33% 33% 17% 17%;
-      clip-path: polygon(
-        50% 0%, 61% 4%, 72% 13%, 80% 29%, 84% 50%, 100% 62%, 91% 72%,
-        82% 70%, 74% 84%, 65% 75%, 58% 96%, 50% 82%, 40% 100%, 33% 80%,
-        24% 91%, 18% 73%, 7% 78%, 0% 65%, 16% 51%, 20% 29%, 29% 13%, 39% 4%
-      );
-      box-shadow:
-        inset 10px 4px 15px rgba(255, 255, 255, 0.42),
-        inset -11px -6px 18px rgba(95, 165, 183, 0.18),
-        inset 0 -24px 26px rgba(255, 255, 255, 0.18),
-        0 0 24px rgba(210, 247, 255, 0.38),
-        0 0 58px rgba(157, 221, 238, 0.18);
-      backdrop-filter: blur(3px);
-      animation: ghostFloat 6.8s ease-in-out infinite;
+    .ghost svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      animation: ghostFloat var(--ghost-float-speed, 7.8s) ease-in-out infinite;
     }
 
-    .ghost-flyer::after {
-      position: absolute;
-      inset: -28% -34%;
-      content: "";
-      background:
-        radial-gradient(ellipse at 48% 42%, rgba(222, 251, 255, 0.24), transparent 36%),
-        radial-gradient(ellipse at 25% 58%, rgba(197, 241, 250, 0.2), transparent 25%),
-        radial-gradient(ellipse at 76% 57%, rgba(197, 241, 250, 0.16), transparent 27%),
-        conic-gradient(from 35deg at 50% 52%, transparent 0 12%, rgba(210, 247, 255, 0.12) 18%, transparent 28% 42%, rgba(210, 247, 255, 0.11) 50%, transparent 61% 100%);
-      border-radius: 999px;
-      filter: blur(14px);
-      opacity: 0.94;
-      animation: ghostFloat 8.4s ease-in-out infinite reverse;
+    .ghost-one {
+      --ghost-size: 150px;
+      --ghost-speed: 38s;
+      --ghost-opacity: 0.56;
+      top: 8%;
+      left: -24vw;
+      animation-delay: -8s;
     }
 
-    .ghost-flyer.one {
-      --ghost-size: 148px;
-      top: 9%;
-      left: -18vw;
-      opacity: 0.68;
-      animation-duration: 34s;
-      animation-delay: -7s;
-    }
-
-    .ghost-flyer.two {
+    .ghost-two {
       --ghost-size: 112px;
+      --ghost-speed: 43s;
+      --ghost-opacity: 0.44;
       top: 57%;
-      right: -20vw;
-      opacity: 0.5;
-      transform: translate3d(18vw, 0, 0) scaleX(-1);
-      animation-name: ghostFlyRightToLeft;
-      animation-duration: 39s;
-      animation-delay: -18s;
+      right: -22vw;
+      transform: translate3d(24vw, 0, 0) scaleX(-1);
+      animation-name: ghostFlyLeft, fadeGhost;
+      animation-delay: -20s;
     }
 
-    .ghost-flyer.three {
+    .ghost-three {
       --ghost-size: 92px;
-      top: 28%;
-      left: -22vw;
-      opacity: 0.42;
-      animation-duration: 45s;
-      animation-delay: -27s;
+      --ghost-speed: 49s;
+      --ghost-opacity: 0.34;
+      --ghost-float-speed: 9.2s;
+      top: 30%;
+      left: -26vw;
+      animation-delay: -29s;
     }
 
-    .tag-518 {
-      color: rgba(255, 255, 255, 0.055);
+    .ghost-four {
+      --ghost-size: 124px;
+      --ghost-speed: 52s;
+      --ghost-opacity: 0.38;
+      --ghost-float-speed: 8.7s;
+      top: 76%;
+      right: -24vw;
+      transform: translate3d(24vw, 0, 0) scaleX(-1);
+      animation-name: ghostFlyLeft, fadeGhost;
+      animation-delay: -35s;
+    }
+
+    .floating-518 {
+      color: rgba(255, 255, 255, 0.052);
       font-size: clamp(4.2rem, 18vw, 10.5rem);
       font-weight: 900;
       letter-spacing: -0.12em;
-      text-shadow: 0 0 40px rgba(241, 50, 50, 0.08);
-      animation: floatTag 22s ease-in-out infinite alternate;
+      text-shadow: 0 0 44px rgba(241, 50, 50, 0.1), 0 0 28px rgba(191, 232, 255, 0.05);
+      animation: floatTag 24s ease-in-out infinite alternate;
     }
 
-    .tag-518-one {
+    .floating-518-one {
       top: 5%;
       right: -1.5rem;
     }
 
-    .tag-518-two {
+    .floating-518-two {
       bottom: 4%;
       left: -1.25rem;
       font-size: clamp(3.8rem, 15vw, 8.5rem);
@@ -234,237 +230,13 @@
       animation-direction: alternate-reverse;
     }
 
-    .pixel-gun {
-      --sprite-scale: 1;
-      width: 178px;
-      height: 76px;
-      opacity: 0.5;
-      image-rendering: pixelated;
-      transform: translate3d(-18vw, 0, 0) scale(var(--sprite-scale));
-      animation: pixelGunFly 20s linear infinite;
-    }
-
-    .pixel-gun::before,
-    .pixel-gun::after {
-      position: absolute;
-      content: "";
-      image-rendering: pixelated;
-    }
-
-    .pixel-gun::before {
-      left: 0;
-      top: 30px;
-      width: 8px;
-      height: 8px;
-      background: #ffb2a6;
-      box-shadow:
-        8px 0 #ffb2a6,
-        16px 0 #ffb2a6,
-        24px 0 #ffb2a6,
-        32px -8px #ff9b91,
-        40px -8px #ff9b91,
-        48px -16px #ff8d85,
-        56px -16px #ff8d85,
-        64px -8px #ffb2a6,
-        72px -8px #ffb2a6,
-        80px -8px #ffb2a6,
-        88px -8px #ffb2a6,
-        96px -8px #ffb2a6,
-        104px -8px #ff958d,
-        112px -8px #ff958d,
-        120px -8px #ff958d,
-        8px 8px #ffb2a6,
-        16px 8px #ffb2a6,
-        24px 8px #ffb2a6,
-        32px 8px #ffb2a6,
-        40px 8px #ffb2a6,
-        48px 8px #ffb2a6,
-        56px 8px #ffb2a6,
-        64px 8px #ffb2a6,
-        72px 8px #ff8d85,
-        80px 8px #ff8d85,
-        88px 8px #ff8d85,
-        96px 8px #ffb2a6,
-        104px 8px #ffb2a6,
-        112px 8px #ffb2a6,
-        120px 8px #ff9b91,
-        8px 16px #ffa399,
-        16px 16px #ffb2a6,
-        24px 16px #ffb2a6,
-        32px 16px #ffa399,
-        40px 16px #ff8d85,
-        48px 16px #ffb2a6,
-        56px 16px #ffb2a6,
-        64px 16px #ffb2a6,
-        72px 16px #ffb2a6,
-        80px 16px #ffb2a6,
-        88px 16px #ff8d85,
-        96px 16px #ff8d85,
-        16px 24px #ff9b91,
-        24px 24px #ffb2a6,
-        32px 24px #ffb2a6,
-        40px 24px #ffb2a6,
-        48px 24px #ffb2a6,
-        56px 24px #ff8d85,
-        64px 24px #ff8d85,
-        24px 32px #ff8d85,
-        32px 32px #ff958d,
-        40px 32px #ff958d;
-    }
-
-    .pixel-gun::after {
-      left: 48px;
-      top: 5px;
-      width: 8px;
-      height: 8px;
-      background: #8c8c8c;
-      box-shadow:
-        8px 0 #8c8c8c,
-        16px 0 #8c8c8c,
-        24px 0 #8c8c8c,
-        32px 0 #8c8c8c,
-        40px 0 #2f3032,
-        48px 0 #2f3032,
-        56px 0 #8c8c8c,
-        64px 0 #8c8c8c,
-        72px 0 #8c8c8c,
-        80px 0 #8c8c8c,
-        88px 0 #8c8c8c,
-        96px 0 #8c8c8c,
-        104px 0 #8c8c8c,
-        112px 0 #8c8c8c,
-        120px 0 #8c8c8c,
-        128px 0 #676767,
-        8px 8px #4e4e4e,
-        16px 8px #4e4e4e,
-        24px 8px #4e4e4e,
-        32px 8px #4e4e4e,
-        40px 8px #161719,
-        48px 8px #161719,
-        56px 8px #161719,
-        64px 8px #4e4e4e,
-        72px 8px #4e4e4e,
-        80px 8px #4e4e4e,
-        88px 8px #4e4e4e,
-        96px 8px #4e4e4e,
-        104px 8px #4e4e4e,
-        112px 8px #4e4e4e,
-        120px 8px #4e4e4e,
-        128px 8px #4e4e4e,
-        136px 8px #242629,
-        0 16px #151619,
-        8px 16px #151619,
-        16px 16px #151619,
-        24px 16px #151619,
-        32px 16px #151619,
-        40px 16px #151619,
-        48px 16px #151619,
-        56px 16px #151619,
-        64px 16px #151619,
-        72px 16px #151619,
-        80px 16px #151619,
-        88px 16px #151619,
-        96px 16px #151619,
-        104px 16px #151619,
-        112px 16px #151619,
-        120px 16px #151619,
-        128px 16px #151619,
-        136px 16px #151619,
-        144px 16px #151619,
-        32px 24px #242629,
-        40px 24px #242629,
-        48px 24px #242629,
-        56px 24px #242629,
-        64px 24px #151619,
-        72px 24px #151619,
-        80px 24px #151619,
-        88px 24px #151619,
-        96px 24px #151619,
-        32px 32px #101113,
-        40px 32px #101113,
-        48px 32px #101113,
-        56px 32px #101113,
-        64px 32px #151619,
-        80px 32px #101113,
-        88px 32px #101113,
-        40px 40px #101113,
-        48px 40px #101113,
-        56px 40px #101113,
-        64px 40px #101113,
-        80px 40px #101113,
-        48px 48px #151619,
-        56px 48px #151619,
-        64px 48px #151619,
-        48px 56px #101113,
-        56px 56px #101113;
-    }
-
-    .pixel-gun.one {
-      --sprite-scale: 0.82;
-      top: 20%;
-      left: -24vw;
-      opacity: 0.58;
-      animation-duration: 18s;
-      animation-delay: -3s;
-    }
-
-    .pixel-gun.two {
-      --sprite-scale: 0.68;
-      top: 73%;
-      left: -26vw;
-      opacity: 0.4;
-      animation-duration: 25s;
-      animation-delay: -14s;
-    }
-
-    .pixel-gun.three {
-      --sprite-scale: 0.58;
-      top: 43%;
-      left: -28vw;
-      opacity: 0.33;
-      animation-duration: 31s;
-      animation-delay: -22s;
-    }
-
-    .bullet-streak {
-      width: 20px;
-      height: 4px;
-      background: linear-gradient(90deg, rgba(255, 244, 184, 0), rgba(255, 244, 184, 0.9), rgba(255, 75, 44, 0.52));
-      box-shadow: 0 0 12px rgba(255, 230, 120, 0.32);
-      opacity: 0;
-      image-rendering: pixelated;
-      animation: bulletShoot 4.8s linear infinite;
-    }
-
-    .bullet-streak.one {
-      top: 24%;
-      left: 28%;
-      animation-delay: -1.2s;
-    }
-
-    .bullet-streak.two {
-      top: 74%;
-      left: 42%;
-      opacity: 0;
-      animation-delay: -3.7s;
-      animation-duration: 5.6s;
-    }
-
-    .bullet-streak.three {
-      top: 45%;
-      left: 18%;
-      width: 16px;
-      animation-delay: -4.8s;
-      animation-duration: 6.2s;
-    }
-
     .particle {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 999px;
-      background: rgba(241, 50, 50, 0.35);
-      box-shadow: 0 0 18px rgba(241, 50, 50, 0.42);
-      animation: riseParticle 13s linear infinite;
+      background: rgba(241, 50, 50, 0.26);
+      box-shadow: 0 0 18px rgba(241, 50, 50, 0.34);
+      animation: riseParticle 15s linear infinite;
     }
 
     .particle-one {
@@ -478,7 +250,7 @@
       width: 4px;
       height: 4px;
       animation-delay: -5s;
-      animation-duration: 15s;
+      animation-duration: 17s;
     }
 
     .particle-three {
@@ -487,7 +259,7 @@
       width: 5px;
       height: 5px;
       animation-delay: -9s;
-      animation-duration: 17s;
+      animation-duration: 19s;
     }
 
     .page {
@@ -681,31 +453,39 @@
       }
     }
 
-    @keyframes ghostFlyLeftToRight {
+    @keyframes ghostFlyRight {
       0% {
-        transform: translate3d(-18vw, 0, 0) rotate(-4deg) scale(0.96);
+        transform: translate3d(-24vw, 0, 0) rotate(-5deg) scale(0.94);
       }
 
-      50% {
-        transform: translate3d(52vw, -3vh, 0) rotate(3deg) scale(1.02);
+      38% {
+        transform: translate3d(38vw, -3.4vh, 0) rotate(3deg) scale(1.02);
+      }
+
+      72% {
+        transform: translate3d(82vw, 2.2vh, 0) rotate(-2deg) scale(0.98);
       }
 
       100% {
-        transform: translate3d(118vw, 2vh, 0) rotate(-2deg) scale(0.98);
+        transform: translate3d(124vw, -1vh, 0) rotate(4deg) scale(0.94);
       }
     }
 
-    @keyframes ghostFlyRightToLeft {
+    @keyframes ghostFlyLeft {
       0% {
-        transform: translate3d(18vw, 0, 0) rotate(3deg) scaleX(-1) scale(0.92);
+        transform: translate3d(24vw, 0, 0) rotate(4deg) scaleX(-1) scale(0.94);
       }
 
-      50% {
-        transform: translate3d(-52vw, 3vh, 0) rotate(-3deg) scaleX(-1) scale(1.02);
+      38% {
+        transform: translate3d(-38vw, 3vh, 0) rotate(-3deg) scaleX(-1) scale(1.02);
+      }
+
+      72% {
+        transform: translate3d(-82vw, -2.2vh, 0) rotate(2deg) scaleX(-1) scale(0.98);
       }
 
       100% {
-        transform: translate3d(-118vw, -2vh, 0) rotate(2deg) scaleX(-1) scale(0.94);
+        transform: translate3d(-124vw, 1vh, 0) rotate(-4deg) scaleX(-1) scale(0.94);
       }
     }
 
@@ -716,44 +496,19 @@
       }
 
       50% {
-        transform: translate3d(0.25rem, -1.15rem, 0) rotate(1.5deg);
+        transform: translate3d(0.28rem, -1.2rem, 0) rotate(1.5deg);
       }
     }
 
-    @keyframes pixelGunFly {
-      0% {
-        transform: translate3d(-18vw, 0, 0) scale(var(--sprite-scale));
-      }
-
-      48% {
-        transform: translate3d(50vw, -1.2rem, 0) scale(var(--sprite-scale));
-      }
-
-      100% {
-        transform: translate3d(118vw, 0.7rem, 0) scale(var(--sprite-scale));
-      }
-    }
-
-    @keyframes bulletShoot {
+    @keyframes fadeGhost {
       0%,
-      44% {
-        opacity: 0;
-        transform: translate3d(0, 0, 0) scaleX(0.4);
-      }
-
-      46% {
-        opacity: 0.42;
-        transform: translate3d(0, 0, 0) scaleX(1);
-      }
-
-      53% {
-        opacity: 0.28;
-      }
-
-      62%,
       100% {
         opacity: 0;
-        transform: translate3d(42vw, 0, 0) scaleX(0.65);
+      }
+
+      12%,
+      84% {
+        opacity: var(--ghost-opacity, 0.5);
       }
     }
 
@@ -774,7 +529,7 @@
       }
 
       16% {
-        opacity: 0.42;
+        opacity: 0.34;
       }
 
       100% {
@@ -811,12 +566,12 @@
         border-radius: 18px;
       }
 
-      .ghost-flyer {
-        --ghost-size: 72px;
+      .ghost {
+        --ghost-size: 76px;
       }
 
-      .pixel-gun {
-        opacity: 0.2;
+      .ghost-one {
+        --ghost-size: 104px;
       }
     }
 
@@ -825,9 +580,18 @@
       *::before,
       *::after {
         scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+      }
+
+      .ghost,
+      .ghost svg,
+      .smoke-layer,
+      .smoke-layer::before,
+      .smoke-layer::after,
+      .floating-518,
+      .particle,
+      .animated-background::before {
+        animation: none !important;
       }
     }
   </style>
@@ -836,17 +600,132 @@
 <body>
   <div class="animated-background" aria-hidden="true">
     <span class="smoke-layer"></span>
-    <span class="tag-518 tag-518-one">518</span>
-    <span class="tag-518 tag-518-two">518</span>
-    <span class="ghost-flyer one"></span>
-    <span class="ghost-flyer two"></span>
-    <span class="ghost-flyer three"></span>
-    <span class="pixel-gun one"></span>
-    <span class="pixel-gun two"></span>
-    <span class="pixel-gun three"></span>
-    <span class="bullet-streak one"></span>
-    <span class="bullet-streak two"></span>
-    <span class="bullet-streak three"></span>
+    <span class="floating-518 floating-518-one">518</span>
+    <span class="floating-518 floating-518-two">518</span>
+    <span class="ghost ghost-one">
+      <svg viewBox="0 0 120 158" role="img" aria-label="Smoky spirit silhouette" focusable="false">
+        <defs>
+          <radialGradient id="ghostGlow1" cx="42%" cy="24%" r="76%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.96" />
+            <stop offset="44%" stop-color="#d8f6ff" stop-opacity="0.66" />
+            <stop offset="100%" stop-color="#9bdaf0" stop-opacity="0.18" />
+          </radialGradient>
+          <linearGradient id="ghostVeil1" x1="20%" x2="86%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.72" />
+            <stop offset="56%" stop-color="#d7f5ff" stop-opacity="0.34" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08" />
+          </linearGradient>
+          <filter id="ghostMist1" x="-35%" y="-30%" width="170%" height="170%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="softGhost" />
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#dff8ff" flood-opacity="0.42" />
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="softGhost" />
+            </feMerge>
+          </filter>
+        </defs>
+        <path d="M13 75C13 34 33 11 60 11s47 23 47 64c0 18 8 26 12 38-10 1-16-5-22-10-4 13-10 27-20 32-4-9-8-17-15-22-6 15-14 27-24 33-2-12-5-22-13-29-5 7-12 13-23 14 6-16 11-28 11-56Z" fill="#dff8ff" opacity="0.18" filter="url(#ghostMist1)" />
+        <path d="M16 78C16 37 34 14 60 14s44 23 44 64c0 23 10 32 13 43-11 0-17-6-23-12-4 12-10 23-19 31-4-10-8-18-15-25-6 14-14 25-24 31-2-13-5-23-13-31-5 8-12 14-23 16 6-17 16-29 16-53Z" fill="url(#ghostGlow1)" opacity="0.74" filter="url(#ghostMist1)" />
+        <path d="M29 82C30 42 44 22 61 21c16-1 28 20 29 60 0 22 4 34 10 45-7-4-14-11-20-20-1 12-4 22-9 31-4-12-8-22-13-31-5 13-11 24-20 34-2-13-3-26-9-38-5 8-10 15-18 20 10-18 17-27 18-40Z" fill="url(#ghostVeil1)" opacity="0.55" />
+        <path d="M35 53c0-8 5-14 11-14s10 6 10 14-4 14-10 14-11-6-11-14Zm31 0c0-8 5-14 11-14s10 6 10 14-4 14-10 14-11-6-11-14Z" fill="#050608" opacity="0.78" />
+        <path d="M51 82c0-9 5-17 11-17 7 0 12 8 12 17 0 10-5 17-12 17-6 0-11-7-11-17Z" fill="#050608" opacity="0.7" />
+        <path d="M28 36c8-13 19-20 33-20 11 0 21 5 29 15" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.16" />
+        <path d="M24 103c10 15 20 19 31 10 10 14 22 15 34-1" fill="none" stroke="#effcff" stroke-width="3" stroke-linecap="round" opacity="0.12" />
+      </svg>
+    </span>
+    <span class="ghost ghost-two">
+      <svg viewBox="0 0 120 158" role="img" aria-label="Smoky spirit silhouette" focusable="false">
+        <defs>
+          <radialGradient id="ghostGlow2" cx="42%" cy="24%" r="76%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.96" />
+            <stop offset="44%" stop-color="#d8f6ff" stop-opacity="0.66" />
+            <stop offset="100%" stop-color="#9bdaf0" stop-opacity="0.18" />
+          </radialGradient>
+          <linearGradient id="ghostVeil2" x1="20%" x2="86%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.72" />
+            <stop offset="56%" stop-color="#d7f5ff" stop-opacity="0.34" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08" />
+          </linearGradient>
+          <filter id="ghostMist2" x="-35%" y="-30%" width="170%" height="170%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="softGhost" />
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#dff8ff" flood-opacity="0.42" />
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="softGhost" />
+            </feMerge>
+          </filter>
+        </defs>
+        <path d="M13 75C13 34 33 11 60 11s47 23 47 64c0 18 8 26 12 38-10 1-16-5-22-10-4 13-10 27-20 32-4-9-8-17-15-22-6 15-14 27-24 33-2-12-5-22-13-29-5 7-12 13-23 14 6-16 11-28 11-56Z" fill="#dff8ff" opacity="0.18" filter="url(#ghostMist2)" />
+        <path d="M16 78C16 37 34 14 60 14s44 23 44 64c0 23 10 32 13 43-11 0-17-6-23-12-4 12-10 23-19 31-4-10-8-18-15-25-6 14-14 25-24 31-2-13-5-23-13-31-5 8-12 14-23 16 6-17 16-29 16-53Z" fill="url(#ghostGlow2)" opacity="0.74" filter="url(#ghostMist2)" />
+        <path d="M29 82C30 42 44 22 61 21c16-1 28 20 29 60 0 22 4 34 10 45-7-4-14-11-20-20-1 12-4 22-9 31-4-12-8-22-13-31-5 13-11 24-20 34-2-13-3-26-9-38-5 8-10 15-18 20 10-18 17-27 18-40Z" fill="url(#ghostVeil2)" opacity="0.55" />
+        <path d="M35 53c0-8 5-14 11-14s10 6 10 14-4 14-10 14-11-6-11-14Zm31 0c0-8 5-14 11-14s10 6 10 14-4 14-10 14-11-6-11-14Z" fill="#050608" opacity="0.78" />
+        <path d="M51 82c0-9 5-17 11-17 7 0 12 8 12 17 0 10-5 17-12 17-6 0-11-7-11-17Z" fill="#050608" opacity="0.7" />
+        <path d="M28 36c8-13 19-20 33-20 11 0 21 5 29 15" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.16" />
+        <path d="M24 103c10 15 20 19 31 10 10 14 22 15 34-1" fill="none" stroke="#effcff" stroke-width="3" stroke-linecap="round" opacity="0.12" />
+      </svg>
+    </span>
+    <span class="ghost ghost-three">
+      <svg viewBox="0 0 120 158" role="img" aria-label="Smoky spirit silhouette" focusable="false">
+        <defs>
+          <radialGradient id="ghostGlow3" cx="42%" cy="24%" r="76%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.96" />
+            <stop offset="44%" stop-color="#d8f6ff" stop-opacity="0.66" />
+            <stop offset="100%" stop-color="#9bdaf0" stop-opacity="0.18" />
+          </radialGradient>
+          <linearGradient id="ghostVeil3" x1="20%" x2="86%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.72" />
+            <stop offset="56%" stop-color="#d7f5ff" stop-opacity="0.34" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08" />
+          </linearGradient>
+          <filter id="ghostMist3" x="-35%" y="-30%" width="170%" height="170%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="softGhost" />
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#dff8ff" flood-opacity="0.42" />
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="softGhost" />
+            </feMerge>
+          </filter>
+        </defs>
+        <path d="M13 75C13 34 33 11 60 11s47 23 47 64c0 18 8 26 12 38-10 1-16-5-22-10-4 13-10 27-20 32-4-9-8-17-15-22-6 15-14 27-24 33-2-12-5-22-13-29-5 7-12 13-23 14 6-16 11-28 11-56Z" fill="#dff8ff" opacity="0.18" filter="url(#ghostMist3)" />
+        <path d="M16 78C16 37 34 14 60 14s44 23 44 64c0 23 10 32 13 43-11 0-17-6-23-12-4 12-10 23-19 31-4-10-8-18-15-25-6 14-14 25-24 31-2-13-5-23-13-31-5 8-12 14-23 16 6-17 16-29 16-53Z" fill="url(#ghostGlow3)" opacity="0.74" filter="url(#ghostMist3)" />
+        <path d="M29 82C30 42 44 22 61 21c16-1 28 20 29 60 0 22 4 34 10 45-7-4-14-11-20-20-1 12-4 22-9 31-4-12-8-22-13-31-5 13-11 24-20 34-2-13-3-26-9-38-5 8-10 15-18 20 10-18 17-27 18-40Z" fill="url(#ghostVeil3)" opacity="0.55" />
+        <path d="M35 53c0-8 5-14 11-14s10 6 10 14-4 14-10 14-11-6-11-14Zm31 0c0-8 5-14 11-14s10 6 10 14-4 14-10 14-11-6-11-14Z" fill="#050608" opacity="0.78" />
+        <path d="M51 82c0-9 5-17 11-17 7 0 12 8 12 17 0 10-5 17-12 17-6 0-11-7-11-17Z" fill="#050608" opacity="0.7" />
+        <path d="M28 36c8-13 19-20 33-20 11 0 21 5 29 15" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.16" />
+        <path d="M24 103c10 15 20 19 31 10 10 14 22 15 34-1" fill="none" stroke="#effcff" stroke-width="3" stroke-linecap="round" opacity="0.12" />
+      </svg>
+    </span>
+    <span class="ghost ghost-four">
+      <svg viewBox="0 0 120 158" role="img" aria-label="Smoky spirit silhouette" focusable="false">
+        <defs>
+          <radialGradient id="ghostGlow4" cx="42%" cy="24%" r="76%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.96" />
+            <stop offset="44%" stop-color="#d8f6ff" stop-opacity="0.66" />
+            <stop offset="100%" stop-color="#9bdaf0" stop-opacity="0.18" />
+          </radialGradient>
+          <linearGradient id="ghostVeil4" x1="20%" x2="86%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.72" />
+            <stop offset="56%" stop-color="#d7f5ff" stop-opacity="0.34" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08" />
+          </linearGradient>
+          <filter id="ghostMist4" x="-35%" y="-30%" width="170%" height="170%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="softGhost" />
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#dff8ff" flood-opacity="0.42" />
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="softGhost" />
+            </feMerge>
+          </filter>
+        </defs>
+        <path d="M13 75C13 34 33 11 60 11s47 23 47 64c0 18 8 26 12 38-10 1-16-5-22-10-4 13-10 27-20 32-4-9-8-17-15-22-6 15-14 27-24 33-2-12-5-22-13-29-5 7-12 13-23 14 6-16 11-28 11-56Z" fill="#dff8ff" opacity="0.18" filter="url(#ghostMist4)" />
+        <path d="M16 78C16 37 34 14 60 14s44 23 44 64c0 23 10 32 13 43-11 0-17-6-23-12-4 12-10 23-19 31-4-10-8-18-15-25-6 14-14 25-24 31-2-13-5-23-13-31-5 8-12 14-23 16 6-17 16-29 16-53Z" fill="url(#ghostGlow4)" opacity="0.74" filter="url(#ghostMist4)" />
+        <path d="M29 82C30 42 44 22 61 21c16-1 28 20 29 60 0 22 4 34 10 45-7-4-14-11-20-20-1 12-4 22-9 31-4-12-8-22-13-31-5 13-11 24-20 34-2-13-3-26-9-38-5 8-10 15-18 20 10-18 17-27 18-40Z" fill="url(#ghostVeil4)" opacity="0.55" />
+        <path d="M35 53c0-8 5-14 11-14s10 6 10 14-4 14-10 14-11-6-11-14Zm31 0c0-8 5-14 11-14s10 6 10 14-4 14-10 14-11-6-11-14Z" fill="#050608" opacity="0.78" />
+        <path d="M51 82c0-9 5-17 11-17 7 0 12 8 12 17 0 10-5 17-12 17-6 0-11-7-11-17Z" fill="#050608" opacity="0.7" />
+        <path d="M28 36c8-13 19-20 33-20 11 0 21 5 29 15" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.16" />
+        <path d="M24 103c10 15 20 19 31 10 10 14 22 15 34-1" fill="none" stroke="#effcff" stroke-width="3" stroke-linecap="round" opacity="0.12" />
+      </svg>
+    </span>
     <span class="particle particle-one"></span>
     <span class="particle particle-two"></span>
     <span class="particle particle-three"></span>
