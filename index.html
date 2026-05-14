@@ -3,207 +3,519 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Base Bio Card Template</title>
+  <meta
+    name="description"
+    content="518 local creator. Socials, updates, and contact links in one place."
+  />
+  <title>Kyle.518 | Bio Card</title>
 
   <style>
     :root {
-      --bg: #f1f3f5;
-      --card: #ffffff;
-      --border: #d9dee3;
-      --text: #171a1f;
-      --muted: #5b6470;
-      --accent: #2f3640;
-      --accent-soft: #eceff3;
-      --surface: #f8f9fb;
-      --shadow: 0 20px 60px rgba(17, 24, 39, 0.12);
-      --focus-ring: rgba(47, 54, 64, 0.25);
-    }
-
-    body[data-theme="luxury-black"] {
-      --bg: #060606;
-      --card: #111111;
-      --border: #2a2a2a;
-      --text: #f4f4f4;
-      --muted: #b0b0b0;
-      --accent: #d1d5db;
-      --accent-soft: #1a1a1a;
-      --surface: #161616;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
-      --focus-ring: rgba(209, 213, 219, 0.3);
+      --bg: #050505;
+      --bg-soft: #111113;
+      --card: rgba(16, 16, 18, 0.78);
+      --card-strong: rgba(24, 24, 27, 0.86);
+      --border: rgba(255, 255, 255, 0.1);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text: #ffffff;
+      --muted: #b8b8c0;
+      --muted-soft: #7c7c86;
+      --accent: #f13232;
+      --accent-deep: #8f1212;
+      --accent-soft: rgba(241, 50, 50, 0.14);
+      --shadow: 0 32px 90px rgba(0, 0, 0, 0.66);
+      --red-glow: 0 0 36px rgba(241, 50, 50, 0.2);
+      --focus-ring: rgba(241, 50, 50, 0.36);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 85%, #ffffff));
+      overflow-x: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(241, 50, 50, 0.18), transparent 32rem),
+        radial-gradient(circle at bottom right, rgba(143, 18, 18, 0.22), transparent 28rem),
+        linear-gradient(145deg, #030303 0%, #0c0c0f 46%, #050505 100%);
       color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      content: "";
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 72%);
+    }
+
+    .background-effects {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .background-effects::before,
+    .background-effects::after {
+      position: absolute;
+      content: "";
+      width: 42rem;
+      height: 42rem;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 60%);
+      filter: blur(42px);
+      opacity: 0.24;
+      animation: driftSmoke 20s ease-in-out infinite alternate;
+    }
+
+    .background-effects::before {
+      top: -18rem;
+      left: -16rem;
+    }
+
+    .background-effects::after {
+      right: -18rem;
+      bottom: -20rem;
+      animation-duration: 24s;
+      animation-direction: alternate-reverse;
+    }
+
+    .ghost,
+    .tag-518,
+    .particle {
+      position: absolute;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+
+    .ghost {
+      width: 34px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50% 50% 42% 42%;
+      background:
+        radial-gradient(circle at 35% 38%, rgba(255, 255, 255, 0.38) 1.5px, transparent 2.5px),
+        radial-gradient(circle at 63% 38%, rgba(255, 255, 255, 0.28) 1.5px, transparent 2.5px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+      box-shadow: 0 0 28px rgba(255, 255, 255, 0.04);
+      opacity: 0.18;
+      animation: floatGhost 16s ease-in-out infinite;
+    }
+
+    .ghost::after {
+      position: absolute;
+      right: 3px;
+      bottom: -1px;
+      left: 3px;
+      height: 8px;
+      content: "";
+      background: radial-gradient(circle at 20% 100%, transparent 0 6px, rgba(255, 255, 255, 0.06) 6.5px);
+      border-radius: 999px;
+    }
+
+    .ghost-one {
+      top: 13%;
+      left: 8%;
+    }
+
+    .ghost-two {
+      right: 11%;
+      bottom: 18%;
+      width: 28px;
+      height: 36px;
+      animation-delay: -7s;
+      animation-duration: 18s;
+    }
+
+    .ghost-three {
+      top: 62%;
+      left: 15%;
+      width: 24px;
+      height: 31px;
+      opacity: 0.12;
+      animation-delay: -11s;
+      animation-duration: 21s;
+    }
+
+    .tag-518 {
+      color: rgba(255, 255, 255, 0.06);
+      font-size: clamp(4.2rem, 18vw, 10.5rem);
+      font-weight: 900;
+      letter-spacing: -0.12em;
+      text-shadow: 0 0 40px rgba(241, 50, 50, 0.08);
+      animation: floatTag 22s ease-in-out infinite alternate;
+    }
+
+    .tag-518-one {
+      top: 5%;
+      right: -1.5rem;
+    }
+
+    .tag-518-two {
+      bottom: 4%;
+      left: -1.25rem;
+      font-size: clamp(3.8rem, 15vw, 8.5rem);
+      animation-delay: -9s;
+      animation-direction: alternate-reverse;
+    }
+
+    .particle {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(241, 50, 50, 0.35);
+      box-shadow: 0 0 18px rgba(241, 50, 50, 0.42);
+      animation: riseParticle 13s linear infinite;
+    }
+
+    .particle-one {
+      left: 20%;
+      bottom: -1rem;
+    }
+
+    .particle-two {
+      right: 28%;
+      bottom: -1rem;
+      width: 4px;
+      height: 4px;
+      animation-delay: -5s;
+      animation-duration: 15s;
+    }
+
+    .particle-three {
+      left: 72%;
+      bottom: -1rem;
+      width: 5px;
+      height: 5px;
+      animation-delay: -9s;
+      animation-duration: 17s;
     }
 
     .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
       width: 100%;
-      max-width: 430px;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 18px;
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
+      width: min(100%, 440px);
+      padding: 30px;
+      overflow: hidden;
       text-align: center;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      box-shadow: var(--shadow), var(--red-glow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(22px);
+    }
+
+    .card::before {
+      display: block;
+      width: 112px;
+      height: 3px;
+      margin: 0 auto 25px;
+      content: "";
+      background: linear-gradient(90deg, transparent, rgba(241, 50, 50, 0.9), transparent);
+      border-radius: 999px;
+      box-shadow: 0 0 18px rgba(241, 50, 50, 0.38);
+    }
+
+    .profile {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
     }
 
     .avatar {
-      width: 86px;
-      height: 86px;
-      border-radius: 50%;
-      margin: 0 auto 18px;
       display: flex;
+      width: 92px;
+      height: 92px;
       align-items: center;
       justify-content: center;
-      background: var(--accent-soft);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 1px;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      background:
+        linear-gradient(145deg, rgba(241, 50, 50, 0.2), rgba(255, 255, 255, 0.06)),
+        var(--card-strong);
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      box-shadow: 0 0 0 7px rgba(241, 50, 50, 0.04), 0 0 32px rgba(241, 50, 50, 0.18);
     }
 
     h1 {
       margin: 0;
-      font-size: 34px;
-      line-height: 1;
-      letter-spacing: -1px;
+      font-size: clamp(2.45rem, 12vw, 3.75rem);
+      line-height: 0.92;
+      letter-spacing: -0.09em;
+      text-transform: uppercase;
+    }
+
+    .subheading {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.83rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
 
     .bio {
-      margin: 14px 0 18px;
+      max-width: 30ch;
+      margin: 18px auto 24px;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 13px;
-      margin-bottom: 22px;
-      border: 1px solid var(--border);
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--focus-ring);
+      font-size: 1rem;
+      line-height: 1.65;
     }
 
     .links {
       display: grid;
-      gap: 12px;
+      gap: 13px;
+      margin-top: 4px;
     }
 
     .link {
-      text-decoration: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 58px;
+      padding: 16px 18px;
+      overflow: hidden;
       color: var(--text);
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: 18px;
-      padding: 15px 16px;
       text-align: left;
-      transition: transform 0.2s ease, background 0.2s ease;
+      text-decoration: none;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.026)),
+        rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 14px 26px rgba(0, 0, 0, 0.22);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .link:hover {
-      transform: translateY(-2px);
-      background: color-mix(in srgb, var(--surface) 70%, var(--accent-soft));
+    .link::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: radial-gradient(circle at 18% 0%, rgba(241, 50, 50, 0.22), transparent 38%);
+      opacity: 0;
+      transition: opacity 0.22s ease;
     }
 
-    .link strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 4px;
+    .link::after {
+      z-index: 1;
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      color: var(--accent);
+      font-size: 1.25rem;
+      line-height: 26px;
+      text-align: center;
+      content: "›";
+      background: var(--accent-soft);
+      border: 1px solid rgba(241, 50, 50, 0.22);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(241, 50, 50, 0.12);
+      transition: transform 0.22s ease, background 0.22s ease;
     }
 
     .link span {
-      color: var(--muted);
-      font-size: 13px;
+      position: relative;
+      z-index: 1;
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .link:hover,
+    .link:focus-visible {
+      background:
+        linear-gradient(135deg, rgba(241, 50, 50, 0.16), rgba(255, 255, 255, 0.045)),
+        rgba(255, 255, 255, 0.055);
+      border-color: rgba(241, 50, 50, 0.44);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 18px 32px rgba(0, 0, 0, 0.28), 0 0 28px rgba(241, 50, 50, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .link:hover::before,
+    .link:focus-visible::before {
+      opacity: 1;
+    }
+
+    .link:hover::after,
+    .link:focus-visible::after {
+      background: rgba(241, 50, 50, 0.18);
+      transform: translateX(2px);
+    }
+
+    .link:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
     }
 
     .footer {
-      margin-top: 22px;
-      color: var(--muted);
-      font-size: 13px;
+      margin: 24px 0 0;
+      color: var(--muted-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    @keyframes driftSmoke {
+      from {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      to {
+        transform: translate3d(4rem, 2rem, 0) scale(1.08);
+      }
+    }
+
+    @keyframes floatGhost {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translate3d(1.1rem, -1.7rem, 0) rotate(4deg);
+      }
+    }
+
+    @keyframes floatTag {
+      from {
+        transform: translate3d(0, 0, 0) rotate(-3deg);
+      }
+
+      to {
+        transform: translate3d(-1.4rem, 1.1rem, 0) rotate(2deg);
+      }
+    }
+
+    @keyframes riseParticle {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+      }
+
+      16% {
+        opacity: 0.42;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate3d(1.6rem, -105vh, 0);
+      }
     }
 
     @media (max-width: 480px) {
-      .card {
-        padding: 22px;
-        border-radius: 22px;
+      .page {
+        align-items: flex-start;
+        padding: 22px 14px;
       }
 
-      h1 {
-        font-size: 30px;
+      .card {
+        padding: 24px 18px 22px;
+        border-radius: 28px;
       }
-    }   
+
+      .avatar {
+        width: 82px;
+        height: 82px;
+        font-size: 22px;
+      }
+
+      .bio {
+        margin-bottom: 22px;
+        font-size: 0.96rem;
+      }
+
+      .link {
+        min-height: 56px;
+        padding: 15px 16px;
+        border-radius: 18px;
+      }
+
+      .ghost-one {
+        left: -1rem;
+      }
+
+      .ghost-two {
+        right: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 
-<body data-theme="light-gray">
+<body>
+  <div class="background-effects" aria-hidden="true">
+    <span class="tag-518 tag-518-one">518</span>
+    <span class="tag-518 tag-518-two">518</span>
+    <span class="ghost ghost-one"></span>
+    <span class="ghost ghost-two"></span>
+    <span class="ghost ghost-three"></span>
+    <span class="particle particle-one"></span>
+    <span class="particle particle-two"></span>
+    <span class="particle particle-three"></span>
+  </div>
+
   <main class="page">
-    <section class="card">
-      <div class="avatar"> </div>
+    <section class="card" aria-label="Kyle Bio Card">
+      <header class="profile">
+        <div class="avatar" aria-hidden="true">K518</div>
+        <h1>KYLE.518</h1>
+        <p class="subheading">518 local creator</p>
+      </header>
 
-      <h1>Base Template</h1>
+      <p class="bio">Daily content, socials, and updates all in one place.</p>
 
-      <p class="bio">
-        Clean, reusable bio card starter for future client or personal brand variants.
-      </p>
+      <nav class="links" aria-label="Kyle social links">
+        <!-- Replace these placeholder links with Kyle’s real URLs. -->
+        <a class="link" href="#snapchat"><span>Add Kyle on Snapchat</span></a>
+        <a class="link" href="#tiktok"><span>Watch Kyle’s TikToks</span></a>
+        <a class="link" href="#facebook"><span>Follow Kyle on Facebook</span></a>
+        <a class="link" href="#x"><span>Follow Kyle on X</span></a>
+        <a class="link" href="#contact"><span>Contact / Collab with Kyle</span></a>
+      </nav>
 
-      <div class="status">
-        <span class="dot"></span>
-        Available for projects
-      </div>
-
-      <div class="links">
-        <a class="link" href="#" target="_blank">
-          <strong>Book / Contact</strong>
-          <span>Primary call to action</span>
-        </a>
-
-        <a class="link" href="#" target="_blank">
-          <strong>Example Service</strong>
-          <span>Placeholder for your first offering</span>
-        </a>
-
-        <a class="link" href="#" target="_blank">
-          <strong>Portfolio</strong>
-          <span>Showcase selected work</span>
-        </a>
-
-        <a class="link" href="#" target="_blank">
-          <strong>Social Channel</strong>
-          <span>Connect with your audience</span>
-        </a>
-      </div>
-
-      <<p class="footer">Built as a reusable base bio template.</p>
+      <p class="footer">Powered by Dio’s Agency</p>
     </section>
   </main>
 </body>
