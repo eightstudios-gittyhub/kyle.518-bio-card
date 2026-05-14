@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base Bio Card Template</title>
+
+  <style>
+    :root {
+      --bg: #f1f3f5;
+      --card: #ffffff;
+      --border: #d9dee3;
+      --text: #171a1f;
+      --muted: #5b6470;
+      --accent: #2f3640;
+      --accent-soft: #eceff3;
+      --surface: #f8f9fb;
+      --shadow: 0 20px 60px rgba(17, 24, 39, 0.12);
+      --focus-ring: rgba(47, 54, 64, 0.25);
+    }
+
+    body[data-theme="luxury-black"] {
+      --bg: #060606;
+      --card: #111111;
+      --border: #2a2a2a;
+      --text: #f4f4f4;
+      --muted: #b0b0b0;
+      --accent: #d1d5db;
+      --accent-soft: #1a1a1a;
+      --surface: #161616;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+      --focus-ring: rgba(209, 213, 219, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 85%, #ffffff));
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .bio {
+      margin: 14px 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--focus-ring);
+    }
+
+    .links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .link {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 15px 16px;
+      text-align: left;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .link:hover {
+      transform: translateY(-2px);
+      background: color-mix(in srgb, var(--surface) 70%, var(--accent-soft));
+    }
+
+    .link strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .link span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 22px;
+        border-radius: 22px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }   
+  </style>
+</head>
+
+<body data-theme="light-gray">
+  <main class="page">
+    <section class="card">
+      <div class="avatar"> </div>
+
+      <h1>Base Template</h1>
+
+      <p class="bio">
+        Clean, reusable bio card starter for future client or personal brand variants.
+      </p>
+
+      <div class="status">
+        <span class="dot"></span>
+        Available for projects
+      </div>
+
+      <div class="links">
+        <a class="link" href="#" target="_blank">
+          <strong>Book / Contact</strong>
+          <span>Primary call to action</span>
+        </a>
+
+        <a class="link" href="#" target="_blank">
+          <strong>Example Service</strong>
+          <span>Placeholder for your first offering</span>
+        </a>
+
+        <a class="link" href="#" target="_blank">
+          <strong>Portfolio</strong>
+          <span>Showcase selected work</span>
+        </a>
+
+        <a class="link" href="#" target="_blank">
+          <strong>Social Channel</strong>
+          <span>Connect with your audience</span>
+        </a>
+      </div>
+
+      <<p class="footer">Built as a reusable base bio template.</p>
+    </section>
+  </main>
+</body>
+</html>
